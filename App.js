@@ -3,14 +3,24 @@ import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import ComponentsScreen from "./src/screens/ComponentsScreen";
 import ListScreen from "./src/screens/ListScreen";
-import PictureComponent from "./src/screens/PictureScreen";
+import PictureScreen from "./src/screens/PictureScreen";
+import CounterScreen from "./src/screens/CounterScreen";
+import ColorScreen from "./src/screens/ColorScreen";
+import SingleColorScreen from "./src/screens/SingleColorScreen";
+import InputScreen from "./src/screens/InputScreen";
+import BoxScreen from "./src/screens/BoxScreen";
 
 const navigator = createStackNavigator(
 	{
 		Home: HomeScreen,
 		Components: ComponentsScreen,
 		List: ListScreen,
-		ImageScreen: PictureComponent,
+		ImageScreen: PictureScreen,
+		CounterScreen: CounterScreen,
+		ColorScreen: ColorScreen,
+		SingleColorScreen: SingleColorScreen,
+		InputScreen: InputScreen,
+		BoxScreen: BoxScreen,
 	},
 	{
 		initialRouteName: "Home",

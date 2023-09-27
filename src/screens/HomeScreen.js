@@ -19,6 +19,26 @@ const HomeScreen = ({ navigation }) => {
 				title="Go to Image Demo"
 				onPress={() => navigation.navigate("ImageScreen")}
 			/>
+			<Button
+				title="Go to State Demo"
+				onPress={() => navigation.navigate("CounterScreen")}
+			/>
+			<Button
+				title="Go to Color Demo"
+				onPress={() => navigation.navigate("ColorScreen")}
+			/>
+			<Button
+				title="Go to Color Changer"
+				onPress={() => navigation.navigate("SingleColorScreen")}
+			/>
+			<Button
+				title="Go to Input Changer"
+				onPress={() => navigation.navigate("InputScreen")}
+			/>
+			<Button
+				title="Go to Style Box"
+				onPress={() => navigation.navigate("BoxScreen")}
+			/>
 			{/* <TouchableOpacity
 				onPress={() => {
 					props.navigation.navigate("List");
