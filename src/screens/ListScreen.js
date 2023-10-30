@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 
-const ListScreen = () => {
+const ListScreen = ({ navigation }) => {
 	const friends = [
 		{ id: "1", name: "colton", title: "hello" },
 		{ id: "2", name: "joe" },
@@ -10,19 +10,25 @@ const ListScreen = () => {
 		{ id: "5", name: "2" },
 	];
 	return (
-		<FlatList
-			keyExtractor={(friend) => {
-				return friend.name;
-			}}
-			data={friends}
-			renderItem={({ item }) => {
-				return (
-					<Text
-						style={styles.textStyle}
-					>{`hello ${item.name}, your id is ${item.id}`}</Text>
-				);
-			}}
-		/>
+		<>
+			<FlatList
+				keyExtractor={(item) => {
+					return item.id;
+				}}
+				data={friends}
+				renderItem={({ item }) => {
+					return (
+						<Text
+							style={styles.textStyle}
+						>{`hello ${item.name}, your id is ${item.id}`}</Text>
+					);
+				}}
+			/>
+			<Button
+				onPress={() => navigation.navigate("Components")}
+				title="Go To Components"
+			/>
+		</>
 	);
 	// return <Text>Hello</Text>;
 };

@@ -63,8 +63,10 @@ const SingleColorScreen = () => {
 			/>
 			<View
 				style={{
-					height: 100,
-					width: 100,
+					height: 200,
+					width: 200,
+					top: 100,
+					left: 100,
 					backgroundColor: `rgb(${Red}, ${Green}, ${Blue})`,
 				}}
 			></View>

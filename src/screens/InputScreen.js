@@ -10,7 +10,7 @@ const InputScreen = () => {
 
 	return (
 		<View>
-			<Text>Enter Name:</Text>
+			<Text>Enter Password:</Text>
 			<TextInput
 				// onChange={onChange}
 				autoCapitalize="none"

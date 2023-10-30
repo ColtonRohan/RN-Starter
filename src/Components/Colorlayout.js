@@ -4,7 +4,7 @@ import { Text, StyleSheet, View, Button, Image } from "react-native";
 const Colorlayout = (props) => {
 	return (
 		<View>
-			<Text style={styles.textView}>{props.color}</Text>
+			<Text style={styles.textView}>{`${props.color}`}</Text>
 			<Button
 				title={`More ${props.color}`}
 				onPress={() => props.onIncrease()}

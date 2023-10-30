@@ -18,13 +18,7 @@ const ColorScreen = () => {
 				data={colors}
 				renderItem={({ item }) => {
 					return (
-						<View
-							style={{
-								height: 100,
-								width: 100,
-								backgroundColor: item,
-							}}
-						></View>
+						<View style={[styles.colorBox, { backgroundColor: item }]}></View>
 					);
 				}}
 			/>
@@ -40,6 +34,15 @@ const randomRgb = () => {
 	return `rgb(${red}, ${green}, ${blue}))`;
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	colorBox: {
+		height: 100,
+		width: 100,
+		borderRadius: 10, // Add a border radius
+		margin: 5, // Add some margin
+		justifyContent: "center", // Center the content vertically
+		alignItems: "center", // Center the content horizontally
+	},
+});
 
 export default ColorScreen;

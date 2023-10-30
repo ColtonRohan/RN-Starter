@@ -39,6 +39,10 @@ const HomeScreen = ({ navigation }) => {
 				title="Go to Style Box"
 				onPress={() => navigation.navigate("BoxScreen")}
 			/>
+			<Button
+				title="Go to Layout screen"
+				onPress={() => navigation.navigate("LayoutScreen")}
+			/>
 			{/* <TouchableOpacity
 				onPress={() => {
 					props.navigation.navigate("List");
@@ -53,6 +57,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 	text: {
 		fontSize: 50,
+		textAlign: "center",
 	},
 });
 
