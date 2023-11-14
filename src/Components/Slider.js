@@ -7,12 +7,27 @@ import carouselData from "../data/carouselData";
 const Slider = () => {
 	const [index, setIndex] = useState(0);
 	const flatListRef = useRef(null);
+	const [isAnimating, setIsAnimating] = useState(false); // Add state to control animation
+
 	const { width: screenWidth } = Dimensions.get("screen");
 
 	const handleOnScroll = (event) => {
 		const offsetX = event.nativeEvent.contentOffset.x;
 		const currentIndex = Math.round(offsetX / screenWidth);
 		setIndex(currentIndex);
+	};
+
+	const handleNextPress = () => {
+		if (isAnimating) {
+			return;
+		}
+		setIsAnimating(true);
+		const nextIndex = (index + 1) % carouselData.length;
+		flatListRef.current.scrollToIndex({ index: nextIndex });
+		setTimeout(() => {
+			setIndex(nextIndex);
+			setIsAnimating(false);
+		}, 300);
 	};
 
 	return (
@@ -27,7 +42,11 @@ const Slider = () => {
 				showsHorizontalScrollIndicator={false}
 				onScroll={handleOnScroll}
 			/>
-			<Pagination data={carouselData} index={index} />
+			<Pagination
+				data={carouselData}
+				index={index}
+				onNextPress={handleNextPress}
+			/>
 		</View>
 	);
 };
