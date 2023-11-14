@@ -1,53 +1,27 @@
-import {
-	StyleSheet,
-	Animated,
-	View,
-	Dimensions,
-	TouchableOpacity,
-	Text,
-} from "react-native";
 import React from "react";
+import { StyleSheet, View, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("screen");
 
-const Pagination = ({ data, scrollX, index, onNextPress }) => {
+const Pagination = ({ data, index }) => {
 	return (
 		<View style={styles.container}>
-			{data.map((_, idx) => {
-				const inputRange = [(idx - 1) * width, idx * width, (idx + 1) * width];
-
-				const dotWidth = scrollX.interpolate({
-					inputRange,
-					outputRange: [12, 30, 12],
-				});
-
-				const opacity = scrollX.interpolate({
-					inputRange,
-					outputRange: [0.2, 1, 0.1],
-				});
-
-				const backgroundColor = scrollX.interpolate({
-					inputRange,
-					outputRange: ["#ccc", "#000", "#ccc"],
-				});
-
+			{data.map((item, idx) => {
+				const isDotActive = idx === index;
 				return (
-					<Animated.View
+					<View
 						key={idx.toString()}
 						style={[
 							styles.dot,
 							{
-								opacity,
-								backgroundColor: idx === index ? "#000" : backgroundColor,
+								backgroundColor: isDotActive ? "#000" : "red",
+								opacity: isDotActive ? 1 : 0.2,
+								width: 12,
 							},
-							// idx === index && styles.dotActive,
 						]}
 					/>
 				);
 			})}
-			<TouchableOpacity onPress={onNextPress} style={styles.nextButton}>
-				<Text style={styles.nextButtonText}>Next</Text>
-			</TouchableOpacity>
 		</View>
 	);
 };
@@ -68,9 +42,6 @@ const styles = StyleSheet.create({
 		height: 12,
 		borderRadius: 6,
 		marginHorizontal: 30,
-		backgroundColor: "#ccc",
-	},
-	dotActive: {
-		backgroundColor: "#000",
+		marginBottom: 30,
 	},
 });

@@ -1,12 +1,4 @@
-import {
-	Image,
-	StyleSheet,
-	Text,
-	View,
-	Dimensions,
-	Animated,
-	Easing,
-} from "react-native";
+import { Image, StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
 
 const { width, height } = Dimensions.get("screen");
@@ -14,11 +6,10 @@ const { width, height } = Dimensions.get("screen");
 const SlideItem = ({ item }) => {
 	return (
 		<View style={styles.container}>
-			<Image source={item.img} resizeMode="contain" style={[styles.image]} />
+			<Image source={item.img} style={[styles.image]} />
 			<View style={styles.content}>
 				<Text style={styles.title}>{item.title}</Text>
 				<Text style={styles.description}>{item.description}</Text>
-				<Text style={styles.price}>{item.price}</Text>
 			</View>
 		</View>
 	);
@@ -33,8 +24,11 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	image: {
-		flex: 0.6,
-		width: "100%",
+		flex: 0.5,
+		margin: 30,
+		width: "90%",
+		borderWidth: 1,
+		borderRadius: 30,
 	},
 	content: {
 		flex: 0.4,

@@ -1,56 +1,24 @@
-import { Animated, FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useRef, useState } from "react";
+import { FlatList, StyleSheet, View, Dimensions } from "react-native";
 import SlideItem from "./SlideItem";
 import Pagination from "./Pagination";
 import carouselData from "../data/carouselData";
 
 const Slider = () => {
 	const [index, setIndex] = useState(0);
-	const scrollX = useRef(new Animated.Value(0)).current;
+	const flatListRef = useRef(null);
+	const { width: screenWidth } = Dimensions.get("screen");
 
 	const handleOnScroll = (event) => {
-		Animated.event(
-			[
-				{
-					nativeEvent: {
-						contentOffset: {
-							x: scrollX,
-						},
-					},
-				},
-			],
-			{
-				useNativeDriver: false,
-			}
-		)(event);
-	};
-
-	const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
-		// console.log('viewableItems', viewableItems);
-		setIndex(viewableItems[0].index);
-	}).current;
-
-	const viewabilityConfig = useRef({
-		itemVisiblePercentThreshold: 50,
-	}).current;
-
-	const onNextPress = () => {
-		// Calculate the index of the next page
-		const nextIndex = currentIndex + 1;
-
-		// Check if the nextIndex is within the bounds of your data
-		if (nextIndex < data.length) {
-			// Scroll to the next page
-			flatListRef.current.scrollToIndex({ index: nextIndex });
-
-			// Update the currentIndex
-			setCurrentIndex(nextIndex);
-		}
+		const offsetX = event.nativeEvent.contentOffset.x;
+		const currentIndex = Math.round(offsetX / screenWidth);
+		setIndex(currentIndex);
 	};
 
 	return (
 		<View>
 			<FlatList
+				ref={flatListRef}
 				data={carouselData}
 				renderItem={({ item }) => <SlideItem item={item} />}
 				horizontal
@@ -58,15 +26,8 @@ const Slider = () => {
 				snapToAlignment="center"
 				showsHorizontalScrollIndicator={false}
 				onScroll={handleOnScroll}
-				onViewableItemsChanged={handleOnViewableItemsChanged}
-				viewabilityConfig={viewabilityConfig}
 			/>
-			<Pagination
-				data={carouselData}
-				scrollX={scrollX}
-				index={index}
-				onNextPress={onNextPress}
-			/>
+			<Pagination data={carouselData} index={index} />
 		</View>
 	);
 };
